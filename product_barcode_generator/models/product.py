@@ -93,3 +93,15 @@ class ProductProduct(models.Model):
                 self.write({'ean13': ean13})
 
         return True
+    
+    @api.model
+    def action_generate_ean13(self):
+        for product in self.browse(self.env.context.get('active_ids',False)):
+            product.generate_ean13()
+    
+    @api.model
+    def create(self, vals):
+        res = super(ProductProduct, self).create(vals)
+        if res:
+            res.generate_ean13()
+        return res
