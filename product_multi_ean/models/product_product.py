@@ -85,7 +85,7 @@ class ProductProduct(models.Model):
         return super(ProductProduct, self).search(domain, *args, **kwargs)
     
     
-    @api.model
-    def name_search(self, name='', args=None, operator='ilike', limit=100):
-        
-        return super(ProductProduct, self).name_search(name=name,args=args,operator=operator,limit=limit)
+#     @api.model
+#     def name_search(self, name='', args=None, operator='ilike', limit=100):
+#         
+#         return super(ProductProduct, self).name_search(name=name,args=args,operator=operator,limit=limit)
