@@ -75,13 +75,11 @@ class ProductProduct(models.Model):
 
     @api.model
     def search(self, domain, *args, **kwargs):
-        if filter(lambda x: x[0] == 'ean13', domain):
-            ean_operator = filter(lambda x: x[0] == 'ean13', domain)[0][1]
-            ean_value = filter(lambda x: x[0] == 'ean13', domain)[0][2]
-            eans = self.env['product.ean13'].search(
-                [('name', ean_operator, ean_value)])
-            domain = filter(lambda x: x[0] != 'ean13', domain)
-            domain += [('ean13_ids', 'in', eans.ids)]
+        for i, e in enumerate(domain):
+            if not isinstance(e, basestring) and e[0] == 'ean13':
+                eans = self.env['product.ean13'].search([('name', e[1], e[2])])
+                domain[i] = ('ean13_ids', 'in', eans.ids)
+                
         return super(ProductProduct, self).search(domain, *args, **kwargs)
     
     
