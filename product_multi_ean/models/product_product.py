@@ -78,9 +78,9 @@ class ProductProduct(models.Model):
     @api.multi
     def _inverse_barcode(self):
         for product in self:
-            if product.ean13_ids:
-                product.ean13_ids[:1].write({'name': product.barcode})
-            else:
+#             if product.ean13_ids:
+#                 product.ean13_ids[:1].write({'name': product.barcode})
+#             else:
                 self.env['product.ean13'].create(self._prepare_ean13_vals())
 
     @api.multi

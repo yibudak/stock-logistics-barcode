@@ -74,15 +74,15 @@ class BarcodeRule(models.Model):
                 continue
             # This query is duplicated, but necessary because the other
             # method is cached & we need a completely current result.
-            domain = [
-                ('generate_model', '=', record.generate_model),
-                ('generate_automate', '=', True),
-            ]
-            if len(self.search(domain)) > 1:
-                raise exceptions.ValidationError(_(
-                    'Only one rule per model can be used for automatic '
-                    'barcode generation.'
-                ))
+#             domain = [
+#                 ('generate_model', '=', record.generate_model),
+#                 ('generate_automate', '=', True),
+#             ]
+#             if len(self.search(domain)) > 1:
+#                 raise exceptions.ValidationError(_(
+#                     'Only one rule per model can be used for automatic '
+#                     'barcode generation.'
+#                 ))
 
     # CRUD
     @api.model
