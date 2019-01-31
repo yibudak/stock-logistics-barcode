@@ -13,9 +13,7 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     # Related to display product product information if is_product_variant
-    barcode_rule_id = fields.Many2one(
-        related='product_variant_ids.barcode_rule_id',
-        string='Barcode Rule', comodel_name='barcode.rule')
+    barcode_rule_id = fields.Many2one(string='Barcode Rule', comodel_name='barcode.rule')
 
     barcode_base = fields.Integer(
         related='product_variant_ids.barcode_base',
@@ -23,7 +21,7 @@ class ProductTemplate(models.Model):
 
     generate_type = fields.Selection(
         string='Generate Type', selection=_GENERATE_TYPE, readonly=True,
-        related='product_variant_ids.barcode_rule_id.generate_type')
+        related='barcode_rule_id.generate_type')
 
     # View Section
     @api.multi

@@ -20,11 +20,11 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <field name="barcode_base" attrs="{
                     'invisible': [('barcode_rule_id', '=', False)],
                     'readonly': [('generate_type', '!=', 'manual')]}"
-                    groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
+                    groups="barcodes_generator_abstract.generate_barcode" colspan="2" invisible="1"/>
                 <button name="generate_base" type="object" string="Generate Base (Using Sequence)" attrs="{'invisible': ['|',
                     ('generate_type', '!=', 'sequence'),
                     ('barcode_base', '!=', 0)]}"
-                    groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
+                    groups="barcodes_generator_abstract.generate_barcode" invisible="1" colspan="2"/>
             </field>
 
             <field name="barcode" position="attributes">
@@ -36,7 +36,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     attrs="{'invisible': ['|',
                             ('barcode_rule_id', '=', False),
                             ('barcode_base', '=', 0)]}"
-                    groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
+                    groups="barcodes_generator_abstract.generate_barcode" colspan="2" invisible="1"/>
             </field>
         </field>
     </record>
