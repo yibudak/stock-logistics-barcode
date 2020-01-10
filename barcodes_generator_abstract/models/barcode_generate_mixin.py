@@ -15,14 +15,13 @@ _logger = logging.getLogger(__name__)
 try:
     import barcode
 except ImportError:
-    _logger.debug("Cannot import 'viivakoodi' python library.")
+    _logger.debug("Cannot import 'python-barcode' python library.")
     barcode = None
 
 
 class BarcodeGenerateMixin(models.AbstractModel):
-
     _name = 'barcode.generate.mixin'
-    _description="Barcode Generate Mixin"
+    _description = 'Generate Barcode Mixin'
 
     # Column Section
     barcode_rule_id = fields.Many2one(
@@ -40,7 +39,7 @@ class BarcodeGenerateMixin(models.AbstractModel):
         barcode_rule = self.env['barcode.rule'].get_automatic_rule(self._name)
         if barcode_rule.exists():
             vals.update({
-                'barcode_rule_id': barcode_rule and barcode_rule[0].id,
+                'barcode_rule_id': barcode_rule.id,
             })
         record = super(BarcodeGenerateMixin, self).create(vals)
         if barcode_rule:
@@ -57,7 +56,8 @@ class BarcodeGenerateMixin(models.AbstractModel):
                     "Generate Base can be used only with barcode rule with"
                     " 'Generate Type' set to 'Base managed by Sequence'"))
             else:
-                item.barcode_base =item.barcode_rule_id.sequence_id.next_by_id()
+                item.barcode_base =\
+                    item.barcode_rule_id.sequence_id.next_by_id()
 
     @api.multi
     def generate_barcode(self):
