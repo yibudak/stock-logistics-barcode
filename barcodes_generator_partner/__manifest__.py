@@ -6,7 +6,7 @@
 {
     'name': 'Generate Barcodes for Partners',
     'summary': 'Generate Barcodes for Partners',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'Tools',
     'author':
         'GRAP,'
@@ -16,7 +16,6 @@
     'license': 'AGPL-3',
     'depends': [
         'barcodes_generator_abstract',
-        'point_of_sale',
     ],
     'data': [
         'views/view_res_partner.xml',
