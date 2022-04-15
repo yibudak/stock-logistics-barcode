@@ -18,7 +18,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
                 <field name="generate_type" invisible="1" />
                 <field name="barcode_base" attrs="{
-                    'invisible': [('barcode_rule_id', '=', False)],
+                    'invisible': 1,
                     'readonly': [('generate_type', '!=', 'manual')]}"
                     groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
                 <button name="generate_base" type="object" string="Generate Base (Using Sequence)" attrs="{'invisible':1}"
@@ -31,7 +31,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
             <field name="barcode" position="after">
                 <button name="generate_barcode" type="object" string="Generate Barcode (Using Barcode Rule)"
-                    attrs="{'invisible':1}"
+                    attrs="{'invisible':0}"
                     groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
             </field>
         </field>
