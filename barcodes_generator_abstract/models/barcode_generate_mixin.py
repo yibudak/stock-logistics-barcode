@@ -65,6 +65,8 @@ class BarcodeGenerateMixin(models.AbstractModel):
     @api.multi
     def generate_barcode(self):
         for item in self:
+            if item.barcode_base == 0:
+                item.generate_base()
             padding = item.barcode_rule_id.padding
             str_base = str(item.barcode_base).rjust(padding, '0')
             custom_code = self._get_custom_barcode(item)
