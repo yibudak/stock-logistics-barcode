@@ -11,13 +11,11 @@ class ProductProduct(models.Model):
     _inherit = ['product.product', 'barcode.generate.mixin']
 
     def create(self, vals):
-        if 'categ_id' not in vals:
-            record = super(ProductProduct, self).create(vals)
-            return record
-        else:
-            record = super(ProductProduct, self).create(vals)
+        record = super(ProductProduct, self).create(vals)
+
+        if record and record.categ_id and not record.barcode:
             record.barcode_rule_id = record.categ_id.barcode_rule_id
-            if not record.barcode:
-                record.generate_base()
-                record.generate_barcode()
-            return record
+            record.generate_base()
+            record.generate_barcode()
+
+        return record
